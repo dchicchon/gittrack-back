@@ -182,7 +182,6 @@ module.exports = () => {
             // Async function to wait for promiseToCheck function to return a value for user
             async function getUser() {
                 let user = await promiseToCheck(req.body);
-                console.log(user)
                 console.log("\n After Promise")
                 console.log(user)
                 if (!user) return done(null, false)
@@ -191,7 +190,8 @@ module.exports = () => {
                 if (req.body.type === 'administrator') {
                     if (user.dataValues.password === password) {
                         let userInfo = user.get();
-                        console.log(userInfo);
+                        console.log("\nFound Userinfo Datavalues. Return to Auth route")
+                        console.log(userInfo.dataValues);
                         return done(null, userInfo)
                     }
                 } else {

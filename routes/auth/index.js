@@ -125,6 +125,9 @@ router.post("/login", (req, res, next) => {
         req.login(user, (err) => {
             if (err) return next(err)
 
+            console.log(`\nUser successfullly logged in`)
+            console.log(user)
+
             let returnData = {
                 color: 'green',
                 message: 'Success!'

@@ -7,7 +7,7 @@ const db = require("../../models");
 router.get('/user', (req, res) => {
 
     console.log("\nGetting User")
-    console.log(req.session.passport.user);
+    console.log(req.session);
 
     // What is this request is authenticated?
     if (req.isAuthenticated()) {

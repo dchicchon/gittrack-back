@@ -10,6 +10,8 @@ const passport = require("passport");
 const session = require("express-session")
 const MySQLStore = require("express-mysql-session")(session);
 
+
+
 require("./config/passport")(passport)
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -48,6 +50,13 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use((req, res, next) => {
+    res.append('Access-Control-Allow-Origin', ['*']);
+    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.append('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
 
 app.use(routes)
 

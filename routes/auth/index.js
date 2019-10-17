@@ -7,6 +7,7 @@ const db = require("../../models");
 router.get('/user', (req, res) => {
 
     console.log("\nGetting User")
+    console.log(req.session.passport.user);
 
     // What is this request is authenticated?
     if (req.isAuthenticated()) {
@@ -68,21 +69,6 @@ router.get('/user', (req, res) => {
                 })
                 break
         }
-        // db.User.findOne({
-        //     where: {
-        //         id: currentUser
-        //     }
-        // }).then(dbUser => {
-        //     // dbUser is the found user information that matches the authenticated user
-        //     console.log(dbUser)
-        //     let user = {
-        //         loggedIn: true,
-        //         type: currentUser.type,
-        //         user: currentUser,
-        //     };
-
-        //     res.json(user);
-        // })
     } else {
         console.log('\nRequest not authenticated :(')
         let noUser = {
@@ -169,16 +155,6 @@ router.post('/signup', (req, res, next) => {
                 message: 'User Created'
             }
             res.json(returnData)
-
-
-            // The user is now logged in
-            // req.login(user, err => {
-            //     if (err) {
-            //         return next(err)
-            //     }
-
-            //     return res.redirect("/")
-            // })
         }
 
 

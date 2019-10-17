@@ -84,6 +84,7 @@ router.get('/user', (req, res) => {
         //     res.json(user);
         // })
     } else {
+        console.log('\nRequest not authenticated :(')
         let noUser = {
             loggedIn: false,
             user: {

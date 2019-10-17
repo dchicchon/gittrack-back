@@ -1,0 +1,49 @@
+{
+  "name": "gittrack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "engines": {
+    "node": "10.16.3"
+  },
+  "scripts": {
+    "client-install": "npm install --prefix client",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dchicchon/trilogy-app-2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dchicchon/trilogy-app-2/issues"
+  },
+  "homepage": "https://github.com/dchicchon/trilogy-app-2#readme",
+  "dependencies": {
+    "@octokit/rest": "^16.28.9",
+    "axios": "^0.19.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "express-mysql-session": "^2.1.0",
+    "express-session": "^1.16.2",
+    "mailgun-js": "^0.22.0",
+    "moment": "^2.24.0",
+    "mysql": "^2.17.1",
+    "mysql2": "^1.7.0",
+    "passport": "^0.4.0",
+    "passport-facebook": "^3.0.0",
+    "passport-github": "^1.1.0",
+    "passport-local": "^1.0.0",
+    "sequelize": "^5.19.0"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^5.5.1"
+  }
+}

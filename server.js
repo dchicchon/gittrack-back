@@ -5,7 +5,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const db = require("./models");
-// const routes = require("./routes");
+const routes = require("./routes");
 const passport = require("passport");
 const session = require("express-session")
 const MySQLStore = require("express-mysql-session")(session);
@@ -15,7 +15,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 let options = {};
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static("client/build"))
     options = {
         host: process.env.HOST,
         port: 3306,
@@ -50,7 +49,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// app.use(routes)
+app.use(routes)
 
 db.sequelize.sync({ force: false }).then(() => {
     let server = app.listen(process.env.PORT || 5000, function () {

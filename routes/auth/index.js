@@ -5,7 +5,10 @@ const db = require("../../models");
 // const authController = require("../../controller/authController");
 
 router.get('/user', (req, res) => {
-    // Req has a method that checks for authentication
+
+    console.log("\nGetting User")
+
+    // What is this request is authenticated?
     if (req.isAuthenticated()) {
         var currentUser = req.session.passport.user;
         console.log("\nREQ SESSION:")

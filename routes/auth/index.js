@@ -7,7 +7,7 @@ const db = require("../../models");
 router.get('/user', (req, res) => {
 
     console.log("\nGetting User")
-    console.log(req.session);
+    // console.log(req.session);
 
     // What is this request is authenticated?
     if (req.isAuthenticated()) {
@@ -111,7 +111,7 @@ router.post("/login", (req, res, next) => {
             res.json(returnData)
         }
 
-        // Successful Login
+        // Successful Login. This should be adding the user to the session
         req.login(user, (err) => {
             if (err) return next(err)
 

@@ -189,6 +189,7 @@ module.exports = () => {
                 // This is done because initally administrators are seeded initally with the deployment of the site
                 if (req.body.type === 'administrator') {
                     if (user.dataValues.password === password) {
+                        // This means get the user!
                         let userInfo = user.get();
                         console.log("\nFound Userinfo Datavalues. Return to Auth route")
                         console.log(userInfo.dataValues);

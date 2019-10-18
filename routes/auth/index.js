@@ -122,7 +122,8 @@ router.post("/login", (req, res, next) => {
                 color: 'green',
                 message: 'Success!'
             }
-            return res.json(returnData)
+
+            return res.cookie("user", user)
         })
     })(req, res, next)
 })

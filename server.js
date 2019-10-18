@@ -45,8 +45,12 @@ app.use(session({
     key: 'surfing_dogs',
     secret: 'surfing_dogs',
     store: sessionStore,
-    resave: false,
-    saveUninitialized: false
+    cookie: {
+        httpOnly: false,
+        secure: false,
+    },
+    resave: true,
+    saveUninitialized: true
 }))
 
 let allowedOrigins = ['http://localhost:3000', 'https://youthful-shockley-623377.netlify.com']

@@ -9,6 +9,7 @@ const routes = require("./routes");
 const passport = require("passport");
 const session = require("express-session")
 const MySQLStore = require("express-mysql-session")(session);
+const cors = require("cors")
 
 
 
@@ -48,14 +49,28 @@ app.use(session({
     saveUninitialized: false
 }))
 
+let allowedOrigins = ['http://localhost:3000', 'https://youthful-shockley-623377.netlify.com']
 
-app.use((req, res, next) => {
-    res.append('Access-Control-Allow-Origin', ['https://youthful-shockley-623377.netlify.com']);
-    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.append('Access-Control-Allow-Headers', 'Content-Type');
-    res.append('Access-Control-Allow-Credentials', true);
-    next();
-});
+app.use(cors({
+    credentials: true,
+    origin: function (origin, callback) {
+        if (!origin) return callback(null, true)
+        if (allowedOrigins.indexOf(origin) === -1) {
+            var msg = 'The CORS policy for this site does not ' +
+                'allow access from the specified Origin.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    }
+}))
+
+// app.use((req, res, next) => {
+//     res.append('Access-Control-Allow-Origin', ['https://youthful-shockley-623377.netlify.com']);
+//     res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+//     res.append('Access-Control-Allow-Headers', 'Content-Type');
+//     res.append('Access-Control-Allow-Credentials', true);
+//     next();
+// });
 
 app.use(passport.initialize());
 app.use(passport.session());

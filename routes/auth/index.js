@@ -123,7 +123,7 @@ router.post("/login", (req, res, next) => {
                 message: 'Success!'
             }
 
-            return res.cookie("user", user)
+            return res.cookie("user", user, { sameSite: false })
         })
     })(req, res, next)
 })

@@ -192,7 +192,8 @@ module.exports = () => {
                         // This means get the user!
                         let userInfo = user.get();
                         console.log("\nFound Userinfo Datavalues. Return to Auth route")
-                        console.log(userInfo.dataValues);
+                        // userInfo.dataValues is undefined for some reason
+                        console.log(userInfo);
                         return done(null, userInfo)
                     }
                 } else {

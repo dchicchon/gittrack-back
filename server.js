@@ -68,13 +68,14 @@ app.use(session({
 //     }
 // }))
 
-var corsOption = {
-    origin: 'https://youthful-shockley-623377.netlify.com',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
-    exposedHeaders: ['x-auth-token']
-};
-app.use(cors(corsOption));
+// var corsOption = {
+//     origin: ['https://youthful-shockley-623377.netlify.com'],
+//     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//     credentials: true,
+//     exposedHeaders: ['x-auth-token']
+// };
+
+app.use(cors());
 
 
 // app.use((req, res, next) => {

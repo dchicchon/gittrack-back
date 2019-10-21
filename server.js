@@ -68,13 +68,22 @@ app.use(session({
 //     }
 // }))
 
-app.use((req, res, next) => {
-    res.append('Access-Control-Allow-Origin', ['https://youthful-shockley-623377.netlify.com']);
-    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.append('Access-Control-Allow-Headers', 'Content-Type');
-    res.append('Access-Control-Allow-Credentials', true);
-    next();
-});
+var corsOption = {
+    origin: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    exposedHeaders: ['x-auth-token']
+};
+app.use(cors(corsOption));
+
+
+// app.use((req, res, next) => {
+//     res.append('Access-Control-Allow-Origin', ['https://youthful-shockley-623377.netlify.com']);
+//     res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+//     res.append('Access-Control-Allow-Headers', 'Content-Type');
+//     res.append('Access-Control-Allow-Credentials', true);
+//     next();
+// });
 
 app.use(passport.initialize());
 app.use(passport.session());

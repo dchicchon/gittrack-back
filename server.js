@@ -4,6 +4,7 @@ require("dotenv").config();
 // Require Packages
 const express = require("express");
 const app = express();
+const morgan = require("morgan")
 const db = require("./models");
 const routes = require("./routes");
 const passport = require("passport");
@@ -46,11 +47,12 @@ app.use(session({
     secret: 'surfing_dogs',
     store: sessionStore,
     cookie: {
+        expires: 21600000,
         httpOnly: false,
-        secure: false,
+        secure: true,
     },
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: false
 }))
 
 // let allowedOrigins = ['http://localhost:3000', 'https://youthful-shockley-623377.netlify.com']
@@ -79,9 +81,9 @@ app.use(session({
 
 app.use((req, res, next) => {
     res.append('Access-Control-Allow-Origin', ['https://youthful-shockley-623377.netlify.com']);
-    res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.append('Access-Control-Allow-Headers', 'Content-Type');
     res.append('Access-Control-Allow-Credentials', true);
+    res.append('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.append('Access-Control-Allow-Methods', 'GET, PUT, OPTIONS, POST,DELETE');
     next();
 });
 

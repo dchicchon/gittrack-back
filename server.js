@@ -69,7 +69,7 @@ app.use(session({
 // }))
 
 var corsOption = {
-    origin: true,
+    origin: 'https://youthful-shockley-623377.netlify.com',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     exposedHeaders: ['x-auth-token']
